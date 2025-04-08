@@ -1,6 +1,9 @@
 .container{
-    display: flex;
-    gap: 16px;
-    margin: 24px 24px;
-    align-items: center;
+    display: grid;  
+    column-gap: 14px;  
+    row-gap: 14px;  
+    grid-template-columns: repeat(auto-fill, minmax(300px, 300px));  
+    margin-top: 50px;  
+    justify-content: space-around;
+    margin-bottom: 30px;
 }

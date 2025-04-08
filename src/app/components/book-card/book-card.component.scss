@@ -1,0 +1,33 @@
+.book-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+    background-color: rgba(49, 169, 67, 0.893);
+    border-radius: 20px;
+}
+
+.img-container{
+    display: flex;
+    height: 250px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.img{
+    height: 100%;
+    max-width: 100%;
+}
+
+.book-info{
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+    overflow: hidden;
+    margin: 0px 20px;
+    margin-bottom: 4px;
+    text-align: center;
+}

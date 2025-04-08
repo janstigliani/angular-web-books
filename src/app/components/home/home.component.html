@@ -1,9 +1,9 @@
 <app-header></app-header>
 
-<div class="container" *ngFor="let book of books">
-
-    <img [src]="book.img" [alt]="book.title">
-    <p>{{ book.title }}</p>
-    <p>{{ book.authors[0].name }}</p>
+<div class="container" >
+    
+    <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
     
 </div>
+
+<app-footer></app-footer>
