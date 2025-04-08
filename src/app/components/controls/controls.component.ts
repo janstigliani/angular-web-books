@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { BookService } from '../../serivices/book.service';
 
 @Component({
   selector: 'app-controls',
@@ -8,5 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './controls.component.scss'
 })
 export class ControlsComponent {
-  
+  service = inject(BookService);
+  next() {
+    this.service.nextPage();
+  }
+
+  prev() {
+    this.service.prevPage();
+  }
 }

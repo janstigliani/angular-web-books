@@ -5,21 +5,26 @@ import { Author, Book } from '../models/book';
   providedIn: 'root'
 })
 export class BookService {
-  page:number = 1
-  booksArray: WritableSignal<Book[]> = signal([])
+  // page = 1;
+  // actUrl = "https://gutendex.com/books/?page="+this.page;
+  nextUrl = "";
+  prevUrl:string = "";
+  booksArray: WritableSignal<Book[]> = signal([]);
   constructor() { 
     this.getAllBooks()
   }
 
-  async callApi() {
-    const url= "https://gutendex.com/books/?page=" + this.page;
-    const promisedData = await fetch(url).then(res => res.json());
+  async callApi(url:string) {
+    const baseUrl= url;
+    const promisedData = await fetch(baseUrl).then(res => res.json());
+    this.nextPage = promisedData.next;
+    this.prevPage = promisedData.prev;
     return promisedData;
   }
 
-  async getAllBooks() {
+  async getAllBooks(url?:string) {
     const data: Book[] = [];
-    const rawData: any = await this.callApi();
+    const rawData: any = await this.callApi(url? url : "https://gutendex.com/books/?page=1");
     console.log(rawData);
     for (const rawBook of rawData.results) {
       const rawAuthorsArray = rawBook.authors;
@@ -51,5 +56,13 @@ export class BookService {
     console.log(this.booksArray);
 
     return this.booksArray;
+  }
+
+  nextPage() {
+    this.getAllBooks(this.nextPage);
+  }
+
+  prevPage() {
+    this.getAllBooks(this.prevPage);
   }
 }
